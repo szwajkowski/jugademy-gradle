@@ -1,0 +1,4 @@
+language: java
+script:
+- cd step02-generating-project
+- ./gradlew clean build
