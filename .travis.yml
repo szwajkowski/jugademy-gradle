@@ -1,4 +1,4 @@
 language: java
 script:
-- cd step02-generating-project
+- cd step02-dependencies
 - ./gradlew clean build
