@@ -20,7 +20,6 @@ repositories {
 }
 
 dependencies {
-    compile project("name-provider")
     // The production code uses Guava
     compile 'com.google.guava:guava:20.0'
 
@@ -39,71 +38,6 @@ jar {
     }
 }
 
-task hello {
-    println "task hello"
-    doLast {
-        println 'Hello world!'
-        println "All tasks:"
-        gradle.taskGraph.allTasks.each {
-            println it.name
-            println it.dependsOn
-        }
-    }
+compileJava {
+    options.verbose = true
 }
-
-
-
-gradle.addProjectEvaluationListener(new ProjectEvaluationListener() {
-    @Override
-    void beforeEvaluate(Project project) {
-        println "before evaluate"
-
-    }
-
-    @Override
-    void afterEvaluate(Project project, ProjectState projectState) {
-        println "after evaluate"
-
-    }
-})
-
-task world(dependsOn: hello) {
-    doLast {
-        println "world"
-    }
-}
-
-
-
-gradle.addBuildListener(new BuildListener() {
-    @Override
-    void buildStarted(Gradle gradle) {
-        println "build started"
-
-    }
-
-    @Override
-    void settingsEvaluated(Settings settings) {
-        println "settings evaluated"
-
-    }
-
-    @Override
-    void projectsLoaded(Gradle gradle) {
-        println "projects loaded"
-
-    }
-
-    @Override
-    void projectsEvaluated(Gradle gradle) {
-        println "projects evaluated"
-
-    }
-
-    @Override
-    void buildFinished(BuildResult buildResult) {
-        println "build finished"
-
-    }
-})
-

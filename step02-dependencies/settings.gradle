@@ -16,5 +16,3 @@ include 'services:webservice'
 */
 
 rootProject.name = 'jugademy-gradle'
-include 'name-provider'
-
