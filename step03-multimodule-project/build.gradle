@@ -1,0 +1,40 @@
+apply plugin: 'application'
+
+allprojects {
+    apply plugin: 'java'
+}
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile project('sub-module')
+    compile 'com.google.guava:guava:20.0'
+
+    // Use JUnit test framework
+    testCompile 'junit:junit:4.12'
+}
+
+mainClassName = 'App'
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'App'
+        )
+    }
+}
+
+compileJava {
+    options.verbose = true
+}
+
+task hello {
+    doLast {
+        task -> println "Hello task from project $task.project.name"
+    }
+}
+
+task dependant(dependsOn: ':sub-module:example') {
+
+}
